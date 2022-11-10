@@ -17,5 +17,24 @@ function showSlides() {
   }
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 3000); // Change image every 2 seconds
+  setTimeout(showSlides, 3000); // Change image every 3 seconds
 }
+
+let mybutton = document.getElementById("goTOP");
+
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+let progrid = document.querySelectorAll(".pro_grid_div")
+// .addEventListener("click",showproduct);
+// console.log(pro);
+for(let i=0;i<progrid.length;i++){
+  progrid[i].addEventListener("click",showproduct(() => {
+    alert("prod,jgf");
+  }));
+}
+// function showproduct(){
+//   alert("Show products");
+// }

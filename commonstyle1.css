@@ -26,9 +26,11 @@
     width: 300px;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 .top_b_header>div>span{
     color: white;
+    cursor: none;
 }
 .top_b_header>img{
     height: 100%;
@@ -55,10 +57,12 @@
 .mid_main_header h1{
     font-size: 40px;
     font-family: 'Kalam', cursive;
+    cursor: pointer;
 }
 .search>button>img{
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 .search>input{
     margin-left: 20px;
@@ -77,6 +81,7 @@
 .cart_div img{
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 .nav_bar{
     width: 100vw;
@@ -93,6 +98,7 @@
     height: 100%;
     margin: auto;
     list-style: none;
+    cursor: pointer;
 }
 
 
@@ -158,17 +164,119 @@
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     padding: 0px 10px;
+    cursor: pointer;
 }
 .main_body>.hashtag{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-style: italic;
+    font-weight: lighter;
+    
 }
-.lipicheek{
+.pro_grid{
+    border: 0px;
     margin: 30px 0px;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: auto;
+    gap: 20px;
     font-family: Avenir-Next,sans-serif;
 }
-.lip_child{
-    width: 30%;
+
+#goTOP{
+    border: 0px;
+    background-color: black;
+    color: rgb(246, 71, 158);
+    cursor: pointer;
+    padding: 15px 30px;
+    font-size: 18px; 
+  }
+  
+  #goTOP:hover {
+    background-color:rgb(246, 71, 158); 
+    color: black;
+  }
+  /* ---------------footer-------------------------- */
+footer{
+    padding-top: 50px;
+    text-align: center;
+}
+  .newsletter{
+    background-color: #f2f2f2;
+    font-size: 18px;
+    font-family: Avenir-Next,sans-serif;
+    letter-spacing: .3px;
+    line-height: 1.15;
+    padding: 30px 0px 10px;
+    
+  }
+  .newsletter>h3{
+    font-size: 1.33rem;
+    letter-spacing: 3px;
+  }
+  .subscription{
+    display: flex;
+    justify-content: center;
+    width: 550px;
+    margin: auto;
+    padding: 10px;
+  }
+.subscription>input{
+    background-color: #fff;
+    padding: 15px;
+    flex-grow: 3;
+    font-family: Avenir-Next,sans-serif;
+    line-height: 1.15;
+    border: 0;
+    margin: 0px;
+    font-size: 1rem;
+}
+.subscription>button{
+    flex-grow: 1;
+    display: inline-block;
+    border: 0px;
+    padding: 16px;
+    background: #000;
+    cursor: pointer;
+    font-family: Avenir-Next,sans-serif ;
+    font-weight:bold;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    margin: 0px;
+}
+.footer_description{
+    padding-top: 40PX;
+    font-family: Avenir-Next,sans-serif;
+}
+.footer_blog{
+    text-align: center;
+    padding: 10px 150px;
+    color: #656565;
+    font-size: .8rem;
+    
+    line-height: 1.7;
+}
+.contact_us{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px 20px;
+}
+.contact_us>h3{
+    letter-spacing: 2px;
+    font-family: Avenir-Next,sans-serif;
+    font-size: 1rem;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+.social_media{
+    display: flex;
+    justify-content: center;
+    padding: 30px 0px;
+}
+.social_media>a{
+    margin: 20px;
+}
+.social_media img{
+    width: 40px;
+    height: 40px;
 }

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register OR Login</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box_log{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        #reg, #log{
+            box-shadow: rgba(247, 37, 37, 0.24) 0px 3px 8px;
+            padding: 30px;
+            margin: 30px 30px;
+        }
+        #reg:hover{
+            box-shadow: rgba(255, 0, 0, 0.25) 0px 54px 55px, rgba(255, 0, 0, 0.12) 0px -12px 30px, rgba(255, 0, 0, 0.12) 0px 4px 6px, rgba(255, 0, 0, 0.17) 0px 12px 13px, rgba(255, 0, 0, 0.09) 0px -3px 5px;
+
+        } 
+        #log:hover{
+            box-shadow: rgba(255, 0, 0, 0.25) 0px 54px 55px, rgba(255, 0, 0, 0.12) 0px -12px 30px, rgba(255, 0, 0, 0.12) 0px 4px 6px, rgba(255, 0, 0, 0.17) 0px 12px 13px, rgba(255, 0, 0, 0.09) 0px -3px 5px;
+        }
+        #reg>h2, #log>h2{
+            text-align: center;
+        }
+        form{
+            display: grid;
+            grid-template-columns: repeat(1, 300px);
+            grid-template-rows: auto;
+            gap: 5px;
+            margin-top: 20px;
+        }
+        input, button{
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            font-size: 15px;
+        }
+        #register, #login{
+            background-color: teal;
+            color: white;
+            margin-top: 15px;
+            border: 0;
+            font-size: 20px;
+            padding: 10px 10px;
+            cursor: pointer;
+        }
+        #logoimg{
+            height: 100px;
+            text-align: center;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="logoimg">
+        <a href="./homepage.html"><img height="100%" src="./logo.jpg" alt=""></a>
+    </div>
+    
+    <div id="box_log">
+        <div id="reg">
+            <h2>New Registraion</h2>
+            <form action="">
+                Name<input type="text" placeholder="Enter your name">
+                E-mail<input type="email">
+                Mobile No.<input type="number">
+                Address<input type="text">
+                Password<input type="password">
+                <input type="submit" name="Submit" id="register">
+            </form>
+        </div>
+        <div id="log">
+            <h2>Login</h2>
+            <form action="">
+                E-mail<input type="email" placeholder="Enter email id">
+                Password<input type="password" placeholder="Enter Password">
+                <button id="login">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
