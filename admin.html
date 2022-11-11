@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            text-align: center;
+        }
+        .admin_logo{
+            height: 80px;
+            text-align: center;
+            background-color: black;
+        }
+        h2{
+            margin: 10px 0px;
+        }
+        table{
+            width: 90%;
+            margin: auto;
+        }
+        thead{
+            background-color: teal;
+            color: white;
+        }
+        th{
+            padding: 5px;
+            font-size: 20px;
+        }
+        td{
+            padding: 5px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin_logo">
+        <img height="100%" src="./logo.jpg" alt="TWACHA">
+    </div>
+    <h2>All Products</h2>
+    <div class="allprodiv">
+        <table id="allprotable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile No.</th>
+                    <th>Address</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="allprotabbody">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+<script type="text/javascript" src="./showdata.js"></script>
+</html>
