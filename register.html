@@ -10,6 +10,11 @@
             margin: 0;
             padding: 0;
         }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
         #box_log{
             display: flex;
             justify-content: center;
@@ -43,7 +48,7 @@
             padding: 5px 10px;
             font-size: 15px;
         }
-        #register, #login{
+        #login{
             background-color: teal;
             color: white;
             margin-top: 15px;
@@ -57,6 +62,15 @@
             text-align: center;
             background-color: black;
         }
+        #regbtn, #loginbtn{
+            background-color: teal;
+            color: white;
+            margin-top: 15px;
+            border: 0;
+            font-size: 20px;
+            padding: 10px 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -68,20 +82,22 @@
         <div id="reg">
             <h2>New Registraion</h2>
             <form id="regform" action="">
-                Name<input id="rName" type="text" placeholder="Enter your name">
-                E-mail<input id="rEmail" type="email">
-                Mobile No.<input id="rMobile" type="number">
-                Address<input id="rAdd" type="text">
-                Password<input id="rPass" type="password">
-                <input type="submit" name="Submit">
+                Name<input id="rName" type="text" placeholder="Enter user name">
+                E-mail<input id="rEmail" type="email" placeholder="Enter your email id">
+                Mobile No.<input id="rMobile" type="number" placeholder="Enter your mobile no.">
+                Address<input id="rAdd" type="text" placeholder="Enter your delivery address">
+                Password<input id="rPass" type="password" placeholder="Enter new password">
+                Card No.<input id="rCard" type="number" placeholder="Enter Debit/Credit Card number">
+                Card Pin<input id="rPin" type="password" placeholder="Save Card-PIN">
+                <input type="submit" name="Submit" id="regbtn" value="Register">
             </form>
         </div>
         <div id="log">
             <h2>Login</h2>
-            <form action="">
-                E-mail<input type="email" placeholder="Enter email id">
-                Password<input type="password" placeholder="Enter Password">
-                <button id="login">Login</button>
+            <form id="loginform" action="">
+                E-mail<input id="logmail" type="email" placeholder="Enter Registered Email id">
+                Password<input id="logpass" type="password" placeholder="Enter Password">
+                <input type="submit" name="Submit" id="loginbtn" value="Login">
             </form>
         </div>
     </div>

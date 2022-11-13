@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            text-align: center;
+        }
+        .admin_logo{
+            height: 80px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: black; 
+            margin-bottom: 10px;
+        }
+        button{
+            border: 1px solid rgb(233, 73, 153);
+            border-radius: 5px;
+            background-color: black;
+            color: rgb(233, 73, 153);
+            padding: 10px;
+            font-size: 20px;
+        }
+        button:hover{
+            box-shadow: rgb(233, 73, 153) 0px 7px 29px 0px;
+        }
+        select{
+            margin: 10px;
+            padding: 3px;
+            width: 300px;
+            text-align: center;
+            font-size: 15px;
+        }
+        #makeup, #skin, #frag, #hair, #brushes{
+            display: none;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        form{
+            margin: auto;
+            border: 0px;
+            box-shadow: rgb(248, 64, 165) 1.95px 1.95px 2.6px;
+            width: fit-content;
+            padding: 15px;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 300px;
+            grid-template-rows: auto;
+            gap: 3px;
+            /* display: none; */
+        }
+        form:hover{
+            box-shadow: rgb(255, 5, 201) 0px 7px 29px 0px;
+        }
+        #newproform>input{
+            padding: 5px;
+            border: 1px solid teal;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin_logo">
+        <img height="100%" src="./logo.jpg" alt="TWACHA">
+        <a href="./allregistration.html"><button>All Registration</button></a>
+        <a href="./allprod.html"><button>All Products</button></a>
+    </div>
+    <h1>Add New Product</h1>
+    
+        <select name="" id="category_select" onchange="gocat()">
+            <option value="" hidden>Select Category</option>
+            <option value="MAKEUP">MAKEUP</option>
+            <option value="SKINCARE">SKINCARE</option>
+            <option value="FRAGRANCE">FRAGRANCE</option>
+            <option value="HAIRCARE">HAIRCARE</option>
+            <option value="TOOLS & BRUSHES">TOOLS & BRUSHES</option>
+        </select>
+
+<!-- ----------------------------------------SUB-CATEGORY------------------------------------- -->
+    <div class="addnew">
+        <select name="" id="makeup" onchange="gosub(1)">
+            <option value="" hidden>Select sub-category</option>
+            <option value="FACE">FACE</option>
+            <option value="EYE">EYE</option>
+            <option value="LIP">LIP</option>
+            <option value="CHEEK">CHEEK</option>
+            <option value="NAILS">NAILS</option>
+        </select>
+        <select name="" id="skin" onchange="gosub(2)">
+            <option value="" hidden>Select sub-category</option>
+            <option value="MOISTURIZERS">MOISTURIZERS</option>
+            <option value="CLEANSERS">CLEANSERS</option>
+            <option value="MASKS">MASKS</option>
+            <option value="BATH & SHOWER">BATH & SHOWER</option>
+            <option value="BODY LOTIONS">BODY LOTIONS</option>
+        </select>
+        <select name="" id="frag" onchange="gosub(3)">
+            <option value="" hidden>Select sub-category</option>
+            <option value="MEN">MEN</option>
+            <option value="WOMEN">WOMEN</option>
+        </select>
+        <select name="" id="hair" onchange="gosub(4)">
+            <option value="" hidden>Select sub-category</option>
+            <option value="SHAMPOO">SHAMPOO</option>
+            <option value="CONDITIONER">CONDITIONER</option>
+            <option value="HAIROIL">HAIR OIL</option>
+        </select>
+        <select name="" id="brushes" onchange="gosub(5)">
+            <option value="" hidden>Select sub-category</option>
+            <option value="BRUSHES">FACE BRUSHES</option>
+            <option value="EYE BRUSHES">EYE BRUSHES</option>
+            <option value="LIP BRUSHES">LIP BRUSHES</option>
+            <option value="TOOLS">HAIR DRYER</option>
+            <option value="TOOLS">HAIR STRAIGHTENER</option>
+        </select>
+<!-- --------------------------------------new product FORM ----------------------------->
+            <form id="newproform" action="">
+                Product Name<input id="pName" type="text" placeholder="Enter product name">
+                Image<input id="pImg" type="text" placeholder="Paste Image link address">
+                Price<input id="pCost" type="number" placeholder="Enter Price of product">
+                Description<input id="pDescription" type="text" placeholder="Enter Brief Description">
+                <input type="submit" name="Submit" id="addformbtn">
+            </form>
+        </form>
+    </div>
+</body>
+</html>
+<!-- ----------------------------script------------------- -->
+<script>
+    let allp = JSON.parse(localStorage.getItem("allproducts")) || [];
+    let subcategory = "";
+    function gocat(){
+        let all = document.querySelectorAll(".addnew>select")
+        for(let i=0;i<all.length;i++){
+            all[i].style.display = "none";
+        }
+        // document.querySelector("#newproform").style.display = "none";
+
+
+        let choice = document.querySelector("#category_select").value;
+        // console.log(choice);
+        // #makeup, #skin, #frag, #hair, #brushes
+        if(choice == "MAKEUP"){
+            document.querySelector("#makeup").style.display = "initial";
+        }
+        if(choice == "SKINCARE"){
+            document.querySelector("#skin").style.display = "initial";
+        } 
+        if(choice == "FRAGRANCE"){
+            document.querySelector("#frag").style.display = "initial";
+        }
+        if(choice == "HAIRCARE"){
+            document.querySelector("#hair").style.display = "initial";
+        }  
+        if(choice == "TOOLS & BRUSHES"){
+            document.querySelector("#brushes").style.display = "initial";
+        }
+    }
+
+    function gosub(x){
+        // document.querySelector("#newproform").style.display = "grid";
+        let subcat="";
+        // #makeup, #skin, #frag, #hair, #brushes
+        if(x==1){
+            subcat = document.querySelector("#makeup").value;
+        }
+        if(x==2){
+            subcat = document.querySelector("#skin").value;
+        }
+        if(x==3){
+            subcat = document.querySelector("#frag").value;
+        }
+        if(x==4){
+            subcat = document.querySelector("#hair").value;
+        }
+        if(x==5){
+            subcat = document.querySelector("#brushes").value;
+        }
+        subcategory = subcat;
+        // console.log(document.querySelector("#category_select").value);
+        // console.log(subcat);
+        
+    }
+    document.querySelector("#newproform").addEventListener("submit",addnewproduct);
+
+    function addnewproduct(event){
+        event.preventDefault();
+        let category = document.querySelector("#category_select").value;
+        let name = document.querySelector("#pName").value;
+        let img = document.querySelector("#pImg").value;
+        let cost = document.querySelector("#pCost").value;
+        let description = document.querySelector("#pDescription").value;
+        
+        let newObj = {
+            category,
+            subcategory,
+            name,
+            img,
+            cost,
+            description
+        };
+        // console.log(newObj);
+        allp.push(newObj);
+        localStorage.setItem("allproducts",JSON.stringify(allp));
+        // console.log(JSON.parse(localStorage.getItem("allproducts")));
+        document.querySelector("#pName").value = "";
+        document.querySelector("#pImg").value = "";
+        document.querySelector("#pCost").value = "";
+        document.querySelector("#pDescription").value = "";
+        document.querySelector("#category_select").value = "";
+        let all = document.querySelectorAll(".addnew>select")
+        for(let i=0;i<all.length;i++){
+            all[i].value = "";
+            all[i].style.display = "none";
+        }
+    }
+</script>
