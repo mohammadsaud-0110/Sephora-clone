@@ -15,7 +15,9 @@
         }
         .admin_logo{
             height: 80px;
-            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
             background-color: black;
         }
         h2{
@@ -37,26 +39,51 @@
             padding: 5px;
             font-size: 15px;
         }
+        td{
+            background-color: rgb(212, 211, 211);
+        }
+        tbody button{
+            background-color: red;
+            color: white;
+            border: 0px;
+            padding: 3px;
+            cursor: pointer;
+        }
+        button{
+            border: 1px solid rgb(233, 73, 153);
+            border-radius: 5px;
+            background-color: black;
+            color: rgb(233, 73, 153);
+            padding: 10px;
+            font-size: 20px;
+        }
+        button:hover{
+            box-shadow: rgb(233, 73, 153) 0px 7px 29px 0px;
+        }
     </style>
 </head>
 <body>
     <div class="admin_logo">
         <img height="100%" src="./logo.jpg" alt="TWACHA">
+        
+        <a href="./allprod.html"><button>All Products</button></a>
+        <a href="./addpro.html"><button>+ Add New Products</button></a>
     </div>
-    <h2>All Products</h2>
-    <div class="allprodiv">
-        <table id="allprotable">
+    <h2>All Registered Users</h2>
+    <div class="alluserdiv">
+        <table id="allusertable">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <!-- <th>Id</th> -->
+                    <th>User Name</th>
                     <th>Email</th>
                     <th>Mobile No.</th>
                     <th>Address</th>
-                    <th>Password</th>
+                    <th>Card No.</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="allprotabbody">
+            <tbody id="alluserbody">
 
             </tbody>
         </table>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Product</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            text-align: center;
+        }
+        .admin_logo{
+            height: 75px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: black;
+        }
+        button{
+            border: 1px solid rgb(233, 73, 153);
+            border-radius: 5px;
+            background-color: black;
+            color: rgb(233, 73, 153);
+            padding: 10px;
+            font-size: 20px;
+        }
+        button:hover{
+            box-shadow: rgb(233, 73, 153) 0px 7px 29px 0px;
+        }
+        h3{
+            text-align: left;
+            margin: 10px 50px;
+        }
+        table{
+            width: 90%;
+            margin: auto;
+        }
+        thead{
+            background-color: teal;
+            color: white;
+        }
+        th{
+            padding: 5px;
+            font-size: 20px;
+        }
+        td{
+            
+            font-size: 15px;
+        }
+        td{
+            background-color: rgb(212, 211, 211);
+        }
+        img{
+            width: 60px;
+            height: 60px;
+        }
+        tbody button{
+            background-color: red;
+            color: white;
+            border: 0px;
+            padding: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin_logo">
+        <img style="height:100%; width:170px" src="./logo.jpg" alt="TWACHA">
+        <a href="./allregistration.html"><button>All Registration</button></a>
+        <a href="./addpro.html"><button>+ Add New Products</button></a>
+    </div>
+    <h3>Total Products: 0</h3>
+    <div id="showallprotable">
+        <table id="allprotable">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Sub-category</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="allprobody">
+
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>
+
+<script>
+
+    let showp = JSON.parse(localStorage.getItem("allproducts")) || [];
+    let numpro = showp.length;
+    document.querySelector("h3").innerText = "Total Products :"+ numpro;
+    for(let i=0;i<showp.length;i++){
+        displayProduct(showp[i],i);
+    }
+
+    function getData()
+    {
+        document.querySelector("#allprobody").innerHTML = "";
+            showp.forEach((elem,index)=>{
+                displayProduct(elem,index);
+            })
+        document.querySelector("h3").innerText = "Total Products :"+ numpro;
+    }
+
+    function displayProduct(val, i){
+        let row = document.createElement("tr");
+
+        let td1 = document.createElement("img");
+        td1.setAttribute("src",val.img);
+
+        let td2 = document.createElement("td");
+        td2.innerText= val.name;
+
+        let td3 = document.createElement("td");
+        td3.innerText = val.category;
+
+        let td4 = document.createElement("td");
+        td4.innerText = val.subcategory;
+
+        let td5 = document.createElement("td");
+        td5.innerText = val.cost;
+
+        let td6 = document.createElement("td");
+        td6.innerText = val.description;
+
+        let td7 = document.createElement("td");
+        let button = document.createElement("button");
+        button.innerHTML = "Remove Product";
+        button.addEventListener("click",(e)=>{
+            // console.log(i);
+            removeProduct(i)
+        })
+        td7.append(button);
+
+        row.append(td1, td2, td3, td4, td5, td6, td7);
+        document.querySelector("#allprobody").append(row);
+    }
+
+    function removeProduct(index)
+    {
+        numpro--;
+        showp = showp.filter((ele,ind)=>ind!==index)
+        localStorage.setItem("allproducts",JSON.stringify(showp))
+        getData();
+    }
+
+</script>

@@ -31,10 +31,15 @@ let progrid = document.querySelectorAll(".pro_grid_div")
 // .addEventListener("click",showproduct);
 // console.log(pro);
 for(let i=0;i<progrid.length;i++){
-  progrid[i].addEventListener("click",showproduct(() => {
-    alert("prod,jgf");
-  }));
+  progrid[i].addEventListener("click",() => {
+    alert("Login First!!!");
+  });
 }
-// function showproduct(){
-//   alert("Show products");
-// }
+
+
+let navlist = document.querySelectorAll(".nav_list")
+for(let i=0;i<navlist.length;i++){
+  navlist[i].addEventListener("click",() => {
+  alert("Login First!!!");
+  });
+}

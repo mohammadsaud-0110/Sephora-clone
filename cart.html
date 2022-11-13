@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bag</title>
+    <style>
+        
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            text-align: center;
+        }
+        .admin_logo{
+            height: 75px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: black;
+        }
+        button{
+            border: 1px solid rgb(233, 73, 153);
+            border-radius: 5px;
+            background-color: black;
+            color: rgb(233, 73, 153);
+            padding: 10px;
+            font-size: 20px;
+        }
+        button:hover{
+            box-shadow: rgb(233, 73, 153) 0px 7px 29px 0px;
+        }
+        #cart-container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap: 20px;
+            width: 90%;
+            margin: auto;
+        }
+        #cart-container>div{
+            border: 0px;
+            padding: 10px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #cart-container>div>img{
+            width: 100%;
+            height: 60%;
+        }
+        #cart-container>div>button{
+            width: fit-content;
+            margin-left: 30%;
+            border: 0px;
+            border-radius: 5px;
+            background-color: rgb(255, 0, 0);
+            color: white;
+            font-size: 10px;
+        } 
+        #loggeduser{
+            color: rgb(233, 73, 153);
+        }
+        #paybtn{
+            padding: 5px 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin_logo">
+        <a href="./homepage1.html"><img style="height:75px; width:170px" src="./logo.jpg" alt="TWACHA"></a>
+        <a href="./viewproduct.html"><button>Add More Items</button></a>
+        <h4 id="loggeduser"></h4>
+    </div>
+    <h1 id="total">Your Total cart Price is:- <span id="cart-total">0</span></h1>
+    <a href="./payment.html"><button id="paybtn">Proceed to Pay</button></a>
+    <div id="cart-container">
+        <!-- Here Append All the cart Products  -->
+    </div>
+</body>
+</html>
+
+<script>
+    let loggeduser = localStorage.getItem("loginuser");
+    document.getElementById("loggeduser").innerText = loggeduser;
+    let cartpro = JSON.parse(localStorage.getItem("cartproduct")) || [];
+    displayCard(cartpro)
+
+
+    function displayCard(ap){
+        document.querySelector("#cart-container").innerHTML = "";
+        for(let i=0;i<ap.length;i++){
+            let div = document.createElement("div");
+
+            let vimg = document.createElement("img");
+            vimg.setAttribute("src",ap[i].img);
+            let vname = document.createElement("h3");
+            vname.innerText = ap[i].name;
+            let vcost = document.createElement("p");
+            vcost.innerText = "₹: "+ap[i].cost;
+            let vdes = document.createElement("p");
+            vdes.innerText = "Details: "+ap[i].description;
+            let vdelete = document.createElement("button");
+            vdelete.innerHTML = "Delete";
+            vdelete.addEventListener("click",(e)=>{
+                // console.log(index);
+                deleteitem(i);
+            })
+
+            div.append(vimg,vname,vcost,vdes,vdelete);
+            document.querySelector("#cart-container").append(div);
+        }
+    }
+
+
+        const calculateSum = () => {
+            let total =0;
+            cartpro.forEach(function(el){
+                let temp = Number(el.cost);
+                total += temp;
+            })
+            if(total===0){
+                document.querySelector("#paybtn").style.display = "none";
+            }
+            document.querySelector("#cart-total").innerText = total;
+            
+        }
+
+        calculateSum();
+        function deleteitem(index){
+            // console.log("cartpro",cartpro)
+            cartpro = cartpro.filter((item,i) => i!==index)
+            localStorage.setItem("cartproduct",JSON.stringify(cartpro));
+            
+            displayCard(cartpro);
+            calculateSum();
+        }
+        
+        
+</script>
+
+

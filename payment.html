@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            text-align: center;
+        }
+        .admin_logo{
+            height: 75px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: black;
+        }
+        button{
+            border: 1px solid rgb(233, 73, 153);
+            border-radius: 5px;
+            background-color: black;
+            color: rgb(233, 73, 153);
+            padding: 10px;
+            font-size: 20px;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input{
+            text-align: center;
+            font-size: 15px;
+            padding: 10px;
+        }
+        button:hover{
+            box-shadow: rgb(233, 73, 153) 0px 7px 29px 0px;
+        }
+        #loggeduser{
+            color: rgb(233, 73, 153);
+        }
+        #paybox{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            width: 400px;
+            margin: auto;
+            height: 300px;
+            padding: 20px;
+        }
+        #paybox>*{
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="admin_logo">
+        <a href="./homepage1.html"><img style="height:75px; width:170px" src="./logo.jpg" alt="TWACHA"></a>
+        <a href="./cart.html"><button><img style="height: 20px" src="https://cdn-icons-png.flaticon.com/512/2326/2326980.png" alt=""></button></a>
+        <h4 id="loggeduser"></h4>
+    </div>
+    <div id="paybox">
+        <h1 id="total">Total Amount Payable:- <span id="cart-total">0</span></h1>
+        <h1 id="totalitem">Total number of items:- <span id="itemtotal"></span></h1>
+        <input id="pin" type="number" placeholder="Enter PIN">
+        <button id="okpay" onclick="verifypay()">Pay</button>
+    </div>
+    
+</body>
+</html>
+
+
+<script>
+    let allREG = JSON.parse(localStorage.getItem("allregis")) || [];
+    let loggeduser = localStorage.getItem("loginuser");
+    document.getElementById("loggeduser").innerText = loggeduser;
+    let cartpro = JSON.parse(localStorage.getItem("cartproduct")) || [];
+    document.querySelector("#itemtotal").innerText = cartpro.length;
+    const calculateSum = () => {
+            let total =0;
+            cartpro.forEach(function(el){
+                let temp = Number(el.cost);
+                total += temp;
+            })
+            if(total===0){
+                document.querySelector("#paybtn").style.display = "none";
+            }
+            document.querySelector("#cart-total").innerText = total;
+            
+    }
+    calculateSum();
+    function verifypay(){
+        let flag=false;
+        let enpin = document.querySelector("#pin").value;
+        for(let j=0;j<allREG.length;j++){
+            let sname = allREG[j].rname;
+            let spin = allREG[j].rpin;
+            if(loggeduser == sname && enpin == spin){
+                flag = true;
+            }
+        }
+        if(flag){
+            alert("Products Purchase Successfull, go to homepage");
+            window.location.href = "./homepage1.html"
+            let tempbag = { [loggeduser] : cartpro};
+            // let allbuy = JSON.parse(localStorage.getItem("allpurchase"))|| [];
+            localStorage.setItem("allpurchase",JSON.stringify(tempbag));
+            cartpro = [];
+            localStorage.setItem("cartproduct",JSON.stringify(cartpro));
+        }
+        else{
+            alert("Wrong PIN");
+        }
+
+    }
+    
+</script>

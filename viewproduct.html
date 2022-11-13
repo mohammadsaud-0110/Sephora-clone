@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Products</title>
+    <style>
+        
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            text-align: center;
+        }
+        .admin_logo{
+            height: 75px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: black;
+        }
+        button{
+            border: 1px solid rgb(233, 73, 153);
+            border-radius: 5px;
+            background-color: black;
+            color: rgb(233, 73, 153);
+            padding: 10px;
+            font-size: 20px;
+        }
+        button:hover{
+            box-shadow: rgb(233, 73, 153) 0px 7px 29px 0px;
+        }
+        #vpro_grid button{
+            border: 1px solid rgb(233, 73, 153);
+            border-radius: 5px;
+            background-color: black;
+            color: rgb(233, 73, 153);
+            padding: 5px 10px;
+            font-size: 15px;
+        }
+        #vpro_grid button:hover{
+            box-shadow: rgb(233, 73, 153) 0px 7px 29px 0px;
+        }
+        h4{
+            color: rgb(233, 73, 153);
+        }
+        .box{
+            width: 80%;
+            margin: auto;
+            margin-top: 30px;
+        }
+        #vpro_grid{
+            
+            margin: 30px 0px;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(auto,500px);
+            gap: 30px;
+            font-family: Avenir-Next,sans-serif;
+        }
+        #vpro_grid>div{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: rgb(167, 115, 141) 0px 7px 29px 0px;
+            padding: 10px;
+
+        }
+        #vpro_grid img{
+            width: 100%;
+            height: 60%;
+        }
+        select{
+            margin: 10px;
+            padding: 3px;
+            width: 300px;
+            text-align: center;
+            font-size: 15px;
+        }
+        #makeup, #skin, #frag, #hair, #brushes{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin_logo">
+        <a href="./homepage1.html"><img style="height:75px; width:170px" src="./logo.jpg" alt="TWACHA"></a>
+        <a href="./cart.html"><button><img style="height: 20px" src="https://cdn-icons-png.flaticon.com/512/2326/2326980.png" alt=""></button></a>
+        <h4 id="loggeduser"></h4>
+    </div>
+    <div id="choosecat">
+        <select name="" id="category_select" onchange="gocat()">
+            <option value="" hidden>Select Category</option>
+            <option value="MAKEUP">MAKEUP</option>
+            <option value="SKINCARE">SKINCARE</option>
+            <option value="FRAGRANCE">FRAGRANCE</option>
+            <option value="HAIRCARE">HAIRCARE</option>
+            <option value="TOOLS & BRUSHES">TOOLS & BRUSHES</option>
+        </select>
+
+<!-- ----------------------------------------SUB-CATEGORY------------------------------------- -->
+    <div class="addnew">
+        <select name="" id="makeup" onchange="gosub(1)">
+            <option value="" hidden>Select sub-category</option>
+            <option value="FACE">FACE</option>
+            <option value="EYE">EYE</option>
+            <option value="LIP">LIP</option>
+            <option value="CHEEK">CHEEK</option>
+            <option value="NAILS">NAILS</option>
+        </select>
+        <select name="" id="skin" onchange="gosub(2)">
+            <option value="" hidden>Select sub-category</option>
+            <option value="MOISTURIZERS">MOISTURIZERS</option>
+            <option value="CLEANSERS">CLEANSERS</option>
+            <option value="MASKS">MASKS</option>
+            <option value="BATH & SHOWER">BATH & SHOWER</option>
+            <option value="BODY LOTIONS">BODY LOTIONS</option>
+        </select>
+        <select name="" id="frag" onchange="gosub(3)">
+            <option value="" hidden>Select sub-category</option>
+            <option value="MEN">MEN</option>
+            <option value="WOMEN">WOMEN</option>
+        </select>
+        <select name="" id="hair" onchange="gosub(4)">
+            <option value="" hidden>Select sub-category</option>
+            <option value="SHAMPOO">SHAMPOO</option>
+            <option value="CONDITIONER">CONDITIONER</option>
+            <option value="HAIROIL">HAIR OIL</option>
+        </select>
+        <select name="" id="brushes" onchange="gosub(5)">
+            <option value="" hidden>Select sub-category</option>
+            <option value="BRUSHES">FACE BRUSHES</option>
+            <option value="EYE BRUSHES">EYE BRUSHES</option>
+            <option value="LIP BRUSHES">LIP BRUSHES</option>
+            <option value="TOOLS">HAIR DRYER</option>
+            <option value="TOOLS">HAIR STRAIGHTENER</option>
+        </select>
+        
+    </div>
+    <div class="box">
+        
+        <div id="vpro_grid">
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    let loggeduser = localStorage.getItem("loginuser");
+    console.log(localStorage.getItem("loginuser"));
+    document.getElementById("loggeduser").innerText = loggeduser;
+    let everyproduct = JSON.parse(localStorage.getItem("allproducts")) || [];
+    displayProduct(everyproduct);
+    let cartItems = JSON.parse(localStorage.getItem("cartproduct")) || [];
+
+    function displayProduct(ap){
+        document.querySelector("#vpro_grid").innerHTML = "";
+        for(let i=0;i<ap.length;i++){
+            let div = document.createElement("div");
+
+            let vimg = document.createElement("img");
+            vimg.setAttribute("src",ap[i].img);
+            let vname = document.createElement("h3");
+            vname.innerText = ap[i].name;
+            let vcost = document.createElement("p");
+            vcost.innerText = ap[i].cost;
+            let vdes = document.createElement("p");
+            vdes.innerText = ap[i].description;
+            let vaddcart = document.createElement("button");
+            vaddcart.innerHTML = "Add to Cart";
+            vaddcart.addEventListener("click",((event)=>{
+                cartItems.push(ap[i])
+                localStorage.setItem("cartproduct",JSON.stringify(cartItems));
+            }))
+
+            div.append(vimg,vname,vcost,vdes,vaddcart);
+            document.querySelector("#vpro_grid").append(div);
+        }
+
+    }
+    function gocat(){
+        let all = document.querySelectorAll(".addnew>select")
+        for(let i=0;i<all.length;i++){
+            all[i].style.display = "none";
+        }
+        let choice = document.querySelector("#category_select").value;
+        if(choice == "MAKEUP"){
+            document.querySelector("#makeup").style.display = "initial";
+        }
+        if(choice == "SKINCARE"){
+            document.querySelector("#skin").style.display = "initial";
+        } 
+        if(choice == "FRAGRANCE"){
+            document.querySelector("#frag").style.display = "initial";
+        }
+        if(choice == "HAIRCARE"){
+            document.querySelector("#hair").style.display = "initial";
+        }  
+        if(choice == "TOOLS & BRUSHES"){
+            document.querySelector("#brushes").style.display = "initial";
+        }
+    }
+
+    let subcateg = "";
+    function gosub(x){
+        // document.querySelector("#newproform").style.display = "grid";
+        let subcat="";
+        // #makeup, #skin, #frag, #hair, #brushes
+        if(x==1){
+            subcat = document.querySelector("#makeup").value;
+        }
+        if(x==2){
+            subcat = document.querySelector("#skin").value;
+        }
+        if(x==3){
+            subcat = document.querySelector("#frag").value;
+        }
+        if(x==4){
+            subcat = document.querySelector("#hair").value;
+        }
+        if(x==5){
+            subcat = document.querySelector("#brushes").value;
+        }
+        subcateg = subcat;
+
+        getData();
+    }
+
+    function getData(){
+        let categ = document.querySelector("#category_select").value;
+        let newData = everyproduct.filter(function(item){
+            return categ == item.category && subcateg == item.subcategory;
+        });
+        displayProduct(newData);
+    }
+                  
+</script>
